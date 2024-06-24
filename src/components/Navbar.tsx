@@ -13,14 +13,17 @@ const Navbar = () => {
             </div>
 
             <div className="flex flex-row justify-center items-center gap-x-2">
+                
                 <Avatar 
                     background={"bg-black"}
                     icon={<Search />}
                 />
+
                 <Avatar 
                     background={"bg-orange-600"}
                     profile="A"
                 />
+                
             </div>
 
         </div>

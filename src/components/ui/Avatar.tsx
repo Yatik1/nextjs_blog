@@ -9,7 +9,7 @@ interface AvatarProps {
 
 const Avatar : React.FC<AvatarProps>= ({src , background ,icon , profile}) => {
     return (
-        <div className={`rounded-full w-10 h-10 ${background} text-white flex items-center justify-center`}>
+        <div className={`cursor-pointer rounded-full w-10 h-10 ${background} text-white flex items-center justify-center`}>
         
             {icon && (
                 <div className=" flex items-center justify-center w-5 h-5 rotate-90">

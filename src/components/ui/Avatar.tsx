@@ -1,18 +1,17 @@
-import { profile } from "console"
-
 interface AvatarProps {
     src?:string
-    background:string
+    styles:string
     icon?:string | JSX.Element 
     profile?:string
+    ref?:React.RefObject<HTMLDivElement> | React.MutableRefObject<HTMLDivElement>
 }
 
-const Avatar : React.FC<AvatarProps>= ({src , background ,icon , profile}) => {
+const Avatar : React.FC<AvatarProps>= ({src , styles ,icon , profile,ref}) => {
     return (
-        <div className={`cursor-pointer rounded-full w-10 h-10 ${background} text-white flex items-center justify-center`}>
+        <div ref={ref} className={`cursor-pointer rounded-full w-10 h-10 ${styles} text-white flex items-center justify-center`}>
         
             {icon && (
-                <div className=" flex items-center justify-center w-5 h-5 rotate-90">
+                <div className=" flex items-center justify-center w-5 h-5">
                     {icon}
                 </div>
             )}

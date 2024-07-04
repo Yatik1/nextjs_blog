@@ -11,7 +11,7 @@ const FormEditor = () => {
   const [disable, setDisable] = useState<boolean>(true)
 
   useEffect(() => {
-    if (title.length > 0 && content.length > 2) {
+    if (title.length > 0 && content.length > 2 && !coverImg) {
       setDisable(false)
     } else {
       setDisable(true)

@@ -12,6 +12,7 @@
     "@types/gsap": "^3.0.0",
     "gsap": "^3.12.5",
     "lucide-react": "^0.396.0",
+    "mongoose": "^8.4.4",
     "next": "14.2.4",
     "next-cloudinary": "^6.6.2",
     "react": "^18",
@@ -19,6 +20,7 @@
     "react-quill": "^2.0.0"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

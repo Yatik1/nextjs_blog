@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { CldUploadWidget } from 'next-cloudinary';
+import axios from "axios";
+import { Blogs } from "@/types/types";
 
 const FormEditor = () => {
 
@@ -11,18 +13,44 @@ const FormEditor = () => {
   const [disable, setDisable] = useState<boolean>(true)
 
   useEffect(() => {
-    if (title.length > 0 && content.length > 2 && !coverImg) {
+    if (title.length > 0 && content.length > 2 && coverImg) {
       setDisable(false)
     } else {
       setDisable(true)
     }
-  }, [title, content])
+  }, [title, content,coverImg])
 
-  const handleUpload = (result: any) => {
+  const handleUpload = (result: any | string) => {
     if (result.info && result.info.url) {
       setCoverImg(result.info.url)
     }
   };
+
+  async function handleSubmit() {
+    const postBlog : Blogs = {
+      title,
+      content,
+      coverImg,
+    }
+
+    try {
+      
+      const response = await axios.post("/api/write" , postBlog, {
+        headers: {
+          "Content-Type":"application/json"
+        }
+      })
+
+      console.log("Success" , response.data);
+      
+      setTitle("")
+      setContent("")
+      setCoverImg("")
+
+    } catch (error) {
+      console.log("[POST DATA ERROR]" , error)
+    }
+  }
 
   return (
     <div className='flex flex-col items-start justify-center p-10 w-full gap-2'>
@@ -38,7 +66,7 @@ const FormEditor = () => {
       <label className='font-bold text-[1.5rem] mt-3'>Write your Story</label>
       <textarea
         placeholder='Write what you think..'
-        className='px-4 py-2 rounded-lg border border-stone-400 focus:outline-none w-1/2 overflow-hidden'
+        className='px-4 py-2 rounded-lg border border-stone-400 focus:outline-none w-3/4 overflow-hidden'
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)}
         value={content}
       />
@@ -59,9 +87,7 @@ const FormEditor = () => {
 
       <button
         className='bg-black mt-5 text-white text-md px-3 py-2 rounded-md w-[5rem] disabled:cursor-not-allowed disabled:bg-gray-500'
-        onClick={() => {
-          console.log({ title, content, coverImg })
-        }}
+        onClick={handleSubmit}
         disabled={disable}
       >Post</button>
     </div>

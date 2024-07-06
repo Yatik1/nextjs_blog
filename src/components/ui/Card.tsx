@@ -4,20 +4,26 @@ import Image from "next/image"
 import Avatar from "./Avatar"
 import { ArrowUpRight } from "lucide-react"
 import { useRef } from "react"
+import { useRouter } from "next/navigation"
 
-interface CarProps {
+interface CardProps {
+    id:string
     title:string
-    author:string
+    author?:string
     cover:string
     index:number
 }
 
 
-const Card : React.FC<CarProps>= ({title,author,cover,index}) => {
+const  Card : React.FC<CardProps>= ({title,author,cover,index , id}) => {
 
   const linkRef = useRef<HTMLDivElement>(null)
-  
+  const router = useRouter()
   const isEven = index % 2 === 1
+
+  function handleClick() {
+    router.push(`/blog/${id}`)
+  }
 
   return(
     <div key={index} className="flex flex-col gap-5 items-start h-full w-auto px-[1vw]">
@@ -37,7 +43,8 @@ const Card : React.FC<CarProps>= ({title,author,cover,index}) => {
           <Avatar 
             ref={linkRef}
             styles="absolute right-2 top-2 bg-black"
-            icon={<ArrowUpRight/>}          
+            icon={<ArrowUpRight/>}      
+            onclick= {handleClick}
           />
 
       </div>

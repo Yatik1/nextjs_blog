@@ -5,13 +5,13 @@ interface AvatarProps {
   styles: string;
   icon?: string | JSX.Element;
   profile?: string;
+  onclick?: () => void
 }
 
-// Using React.forwardRef to handle the ref
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
-  const { src, styles, icon, profile } = props;
+  const { src, styles, icon, profile , onclick } = props;
   return (
-    <div ref={ref} className={`cursor-pointer rounded-full w-10 h-10 ${styles} text-white flex items-center justify-center`}>
+    <div ref={ref} onClick={onclick} className={`cursor-pointer rounded-full w-10 h-10 ${styles} text-white flex items-center justify-center`}>
       {icon && (
         <div className="flex items-center justify-center w-5 h-5">
           {icon}

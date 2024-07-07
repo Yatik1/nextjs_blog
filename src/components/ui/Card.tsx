@@ -7,7 +7,7 @@ import { useRef } from "react"
 import { useRouter } from "next/navigation"
 
 interface CardProps {
-    id:string
+    id?:string
     title:string
     author?:string
     cover:string

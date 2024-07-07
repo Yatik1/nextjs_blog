@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { CldUploadWidget } from 'next-cloudinary';
 import axios from "axios";
 import { Blogs } from "@/types/types";
+import Image from "next/image";
+import { Trash } from "lucide-react";
 
 const FormEditor = () => {
 
@@ -20,7 +22,7 @@ const FormEditor = () => {
     }
   }, [title, content,coverImg])
 
-  const handleUpload = (result: any | string) => {
+  const onUpload = (result: any | string) => {
     if (result.info && result.info.url) {
       setCoverImg(result.info.url)
     }
@@ -72,7 +74,23 @@ const FormEditor = () => {
       />
 
       <label className='font-bold text-[1.5rem] mt-3'>Add Cover Image</label>
-      <CldUploadWidget uploadPreset="next_blog" onUpload={handleUpload}>
+      {coverImg && (
+          <div key={coverImg} className="relative w-[350px] h-[200px] rounded-md overflow-hidden">
+            <div className="z-10 absolute top-2 right-2">
+              <button className="bg-red-600 text-white p-2 rounded-md" onClick={() => setCoverImg("")}>
+                <Trash className="h-4 w-4" />
+              </button>
+            </div>
+            <Image 
+              fill
+              className="object-cover"
+              alt="Image"
+              src={coverImg} 
+            />
+          </div>
+      )}
+
+      <CldUploadWidget uploadPreset="next_blog" onUpload={onUpload}>
         {({ open }) => {
           return (
             <button

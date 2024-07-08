@@ -30,7 +30,8 @@ const CardSection = () => {
     } , [])
 
     return (
-        <div className="absolute top-[14%] h-full w-auto flex items-start pl-7">
+        <div className="absolute h-full w-auto flex items-start pl-7">
+            
             {blogs.length === 0 ? 
                 (
                     <p className='mt-[10rem] flex justify-center items-start w-screen h-screen text-slate-500'>No Blogs Available. ❌</p>

@@ -30,7 +30,7 @@ const CardSection = () => {
     } , [])
 
     return (
-        <div className="absolute h-full w-auto flex items-start pl-7">
+        <div className="absolute w-auto flex items-start pl-7 pb-[3rem]">
             
             {blogs.length === 0 ? 
                 (
@@ -42,6 +42,7 @@ const CardSection = () => {
                             id={data._id}
                             title={data.title}
                             cover={data.coverImg}
+                            author='Yatik'
                             index={index}
                         />  
                     ))

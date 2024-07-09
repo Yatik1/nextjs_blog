@@ -37,7 +37,7 @@ const BlogPage : React.FC = () => {
 
 
   return (
-    <div className='bg-gray-100 w-full flex items-center justify-center'>
+    <div className='w-full flex items-center justify-center'>
       {loading ? (
         <p className='text-xl h-screen w-full flex items-center justify-center'>Loading ..... </p>
       ) : (

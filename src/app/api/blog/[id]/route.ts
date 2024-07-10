@@ -58,3 +58,25 @@ export async function PATCH(
         return new NextResponse("Internal Error" , {status : 500})
     }
 }
+
+export async function DELETE (
+    req:Request ,
+    {params} : {params : {id:string}}
+) {
+    
+    try {
+        
+        if(!params.id) {
+            return new NextResponse("Invalid Id" , {status : 401})
+        }
+
+        const deleteBlog = await BlogModel.findByIdAndDelete(params.id)
+
+        return NextResponse.json(deleteBlog)
+
+    } catch (error) {
+        console.log("[BLOGID_DELETE]" , error)
+        throw new NextResponse("Internal Error" , {status : 500})
+    }
+
+}

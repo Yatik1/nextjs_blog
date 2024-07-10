@@ -3,7 +3,6 @@ import BlogModel from "@/model/Blog";
 import { NextResponse } from "next/server";
 
 export async function GET (req:Request) {
-    await dbConnect()
 
     try {
         

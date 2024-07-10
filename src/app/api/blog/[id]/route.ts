@@ -20,3 +20,41 @@ export async function GET(
         return new NextResponse("Internal Error" , {status : 500})
     }
 }
+
+export async function PATCH(
+    req:Request , 
+    {params} : {params : {id : string}}
+) {
+    try {
+        
+        const body = await req.json()
+        const {title , content , coverImg} = body
+
+        if(!params.id) {
+            return new NextResponse("Valid Blog Id is Required " , {status : 401})
+        }
+
+        if(!title) {
+            return new NextResponse("Title is Required", {status : 400})
+        }
+
+        if(!content) {
+            return new NextResponse("Content of the Blog is required" , {status : 400})
+        }
+
+        if(!coverImg) {
+            return new NextResponse("Cover Image Link is required" , {status : 400})
+        }
+
+        const updateBlog = await BlogModel.findByIdAndUpdate(
+            params.id , 
+            {title , content , coverImg}
+        )
+
+        return NextResponse.json(updateBlog)
+
+    } catch (error) {
+        console.log("[BLOGID_PATCH]" , error)
+        return new NextResponse("Internal Error" , {status : 500})
+    }
+}

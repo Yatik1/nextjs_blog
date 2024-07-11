@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET (req:Request) {
 
     try {
+        await dbConnect()
         
         const blogs = await BlogModel.find()
         return NextResponse.json(blogs)

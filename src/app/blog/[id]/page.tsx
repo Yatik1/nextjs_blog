@@ -62,7 +62,7 @@ const BlogPage : React.FC = () => {
               <div className="w-full mt-[2.5rem] py-4 align-center px-[5rem]">
                 <p>{data.content}</p>
               </div>
-              <hr className=' w-4/5' />
+              <hr className=' w-full' />
           </div>
         ) : (
           <p className='h-screen w-full flex items-center justify-center'> ❌ No such Blog exist. </p>

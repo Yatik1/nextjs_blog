@@ -10,9 +10,17 @@ const HomePage = () => {
       </div>
 
       <CardSection />
+
     </div>
       
   )
 }
 
 export default HomePage
+
+
+
+{/* <div className="absolute bg-black flex flex-row gap-5">
+<div className="rounded-full w-10 h-10 bg-red-200 text-black flex items-center justify-center" onClick={() => alert("left")}>{`>`}</div>
+<div className="rounded-full w-10 h-10 bg-red-200 text-black flex items-center justify-center" onClick={}>{`<`}</div>
+</div> */}

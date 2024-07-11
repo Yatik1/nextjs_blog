@@ -6,6 +6,7 @@ import axios from "axios";
 import { Blogs } from "@/types/types";
 import Image from "next/image";
 import { Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const FormEditor = () => {
 
@@ -13,6 +14,8 @@ const FormEditor = () => {
   const [content, setContent] = useState<string>("")
   const [coverImg, setCoverImg] = useState<string>("")
   const [disable, setDisable] = useState<boolean>(true)
+
+  const router = useRouter()
 
   useEffect(() => {
     if (title.length > 0 && content.length > 2 && coverImg) {
@@ -43,11 +46,8 @@ const FormEditor = () => {
         }
       })
 
-      console.log("Success" , response.data);
-      
-      setTitle("")
-      setContent("")
-      setCoverImg("")
+      alert("Success")      
+      router.push("/")
 
     } catch (error) {
       console.log("[POST DATA ERROR]" , error)

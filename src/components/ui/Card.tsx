@@ -113,12 +113,13 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id}) => {
             onclick= {handleClick}
           />
 
+     <div className="absolute -left-2 -bottom-1 z-[999] flex flex-col items-center justify-center leading-3 bg-neutral-50 py-[0.6rem] px-[1.3rem] w-fit max-w-fit rounded-full">
+        <h2 className="text-xl font-semibold tracking-tighter">{title}</h2>
+      </div>
+
       </div>
       
-      <div className="flex flex-col leading-3 bg-purple-50 p-2">
-        <h2 className="text-xl font-semibold tracking-tighter">{title}</h2>
-        <p className="text-[1rem] underline italic ">{author}</p>
-      </div>
+
 
     </div>
   )

@@ -88,40 +88,38 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id}) => {
         cardRef.current.addEventListener("mouseleave" , handleMouseLeave)
 
     }
-  } , [isThird])
+  } , [])
 
   return(
-    <div key={index} className="flex flex-col gap-[1rem] items-start w-auto px-[1vw]">
-
-      <div 
-        className={`relative bg-stone-300 ${isThird ? 'w-[42vw] h-[30vw]' : 'w-[21vw] h-[30vw]'} rounded-[2rem] overflow-hidden mt-[3rem]`}
-        ref={cardRef}
-      >
-          
-          <Image 
-            src={cover}
-            alt="image"
-            className="absolute inset-0 w-full h-full"
-            layout="fill"
-            objectFit="cover"
-          />
-
-          <Avatar 
-            ref={linkRef}
-            styles="absolute right-2 top-2 bg-stone-800 hover:bg-stone-100 hover:text-black"
-            icon={<ArrowUpRight/>}      
-            onclick= {handleClick}
-          />
-
-     <div className="absolute -left-2 -bottom-1 z-[999] flex flex-col items-center justify-center leading-3 bg-neutral-50 py-[0.6rem] px-[1.3rem] w-fit max-w-fit rounded-full">
-        <h2 className="text-xl font-semibold tracking-tighter">{title}</h2>
-      </div>
-
-      </div>
-      
 
 
+    <div 
+      className={`relative bg-stone-300 ${isThird ? 'w-[42vw] h-[30vw]' : 'w-[21vw] h-[30vw]'} rounded-[2rem] overflow-hidden mt-[3rem]`}
+      ref={cardRef}
+      key={index} 
+    >
+        
+        <Image 
+          src={cover}
+          alt="image"
+          className="absolute inset-0 w-full h-full"
+          layout="fill"
+          objectFit="cover"
+        />
+    
+        <Avatar 
+          ref={linkRef}
+          styles="absolute right-2 top-2 bg-stone-800 hover:bg-stone-100 hover:text-black"
+          icon={<ArrowUpRight/>}      
+          onclick= {handleClick}
+        />
+    
+    <div className="absolute -left-2 -bottom-1 z-[999] flex flex-col items-center justify-center leading-3 bg-neutral-50 py-[0.6rem] px-[1.3rem] w-fit max-w-fit rounded-full">
+      <h2 className="text-xl font-semibold tracking-tighter">{title}</h2>
     </div>
+    
+    </div>
+
   )
 }
 

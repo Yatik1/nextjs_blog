@@ -94,7 +94,7 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id}) => {
 
 
     <div 
-      className={`relative bg-stone-300 ${isThird ? 'w-[42vw] h-[30vw]' : 'w-[21vw] h-[30vw]'} rounded-[2rem] overflow-hidden mt-[3rem]`}
+      className={`relative bg-stone-300 ${isThird ? 'w-[90vw] h-[80vw] md:w-[42vw] md:h-[30vw]' : 'w-[90vw] h-[80vw] md:w-[21vw] md:h-[30vw]'} rounded-[2rem] overflow-hidden md:mt-[3rem] mb-[2vw]`}
       ref={cardRef}
       key={index} 
     >

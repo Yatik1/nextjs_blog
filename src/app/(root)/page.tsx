@@ -18,8 +18,12 @@ const HomePage = () => {
     return <p className="flex w-full h-screen items-center justify-center">Loading ..... </p>
   }
 
+  if(blogs.length === 0) {
+    <p className='mt-[10rem] flex justify-center items-start w-screen h-screen text-slate-500'>No Blogs Available. ❌</p>
+  }
+
   return (
-    <div className="relative h-screen w-full bg-white md:overflow-x-hidden">
+    <div className="relative h-screen min-h-screen bg-white md:overflow-x-hidden">
 
       <div className="flex items-center justify-center">
         <h1 className="font-bold italic text-[3rem] mt-[4rem] pt-[3rem]">All Blogs{"->"}</h1>

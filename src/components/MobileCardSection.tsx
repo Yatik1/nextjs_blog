@@ -5,8 +5,8 @@ import Card from './ui/Card'
 const MobileCardSection = ({blogs} : {blogs : Blogs[]}) => {
 
   return (
-    <div className="flex items-center justify-center h-screen w-screen mb-9 md:hidden bg-black overflow-auto">
-        <div className='flex flex-col gap-2 justify-center items-center '>
+    <div className="h-fit w-screen md:hidden py-[4vw]">
+        <div className='flex flex-col gap-2 justify-start items-center mb-3 px-4'>
         {blogs.map((data,index) => (
             <Card
             id={data._id}

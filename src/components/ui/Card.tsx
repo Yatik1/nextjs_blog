@@ -60,11 +60,13 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id}) => {
 
   useEffect(() => {
     if(cardRef.current) {
-        
+
+      const isMobile = window.innerWidth <= 768
+      
         const handleMouseEnter = () => {
           gsap.to(cardRef.current , {
-              scale:isThird ? 1.052 : 1.093,
-              width:isThird ? "" : "42vw",
+              scale:isMobile ? 1.052 : (isThird ? 1.052 : 1.093),
+              width:isMobile ? "90vw" : (isThird ? "" : "42vw"),
               marginRight : "10px",
               marginLeft:"10px",
               dealy:1,
@@ -76,7 +78,7 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id}) => {
         const handleMouseLeave = () => {
           gsap.to(cardRef.current , {
               scale: 1,
-              width:isThird ? "" : "21vw",
+              width:isMobile ? "" : (isThird ? "" : "21vw"),
               marginRight:0,
               marginLeft:0,
               duration:0.5,

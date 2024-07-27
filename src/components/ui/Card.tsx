@@ -96,7 +96,7 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id}) => {
 
 
     <div 
-      className={`relative bg-stone-300 ${isThird ? 'w-[90vw] h-[80vw] md:w-[42vw] md:h-[30vw]' : 'w-[90vw] h-[80vw] md:w-[21vw] md:h-[30vw]'} rounded-[2rem] overflow-hidden md:mt-[3rem] mb-[2vw]`}
+      className={`relative bg-stone-300 ${isThird ? 'w-[90vw] h-[80vw] md:w-[42vw] md:h-[30vw]' : 'w-[90vw] h-[80vw] md:w-[21vw] md:h-[30vw]'} rounded-[2rem] overflow-hidden md:mt-[2.4rem] mb-[2vw]`}
       ref={cardRef}
       key={index} 
     >
@@ -116,11 +116,11 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id}) => {
           onclick= {handleClick}
         />
     
-    <div className="absolute -left-2 -bottom-1 z-[999] flex flex-col items-center justify-center leading-3 bg-neutral-50 py-[0.6rem] px-[1.3rem] w-fit max-w-fit rounded-full">
+    <div className="absolute -left-2 -bottom-1 z-[9] flex items-center justify-center leading-3 bg-neutral-50 py-[0.6rem] px-[1.3rem] w-fit rounded-full">
       <h2 className="text-xl font-semibold tracking-tighter">{title}</h2>
     </div>
-    
-    </div>
+
+  </div>
 
   )
 }

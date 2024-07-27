@@ -8,7 +8,7 @@ import {motion} from "framer-motion"
 const CardSection = ({blogs} : {blogs : Blogs[]}) => {
 
     return (
-        <div className="absolute flex items-start pl-7 pb-[3rem]">
+        <div className="flex items-start pl-7 pb-[3rem]">
             <motion.div 
                 initial={{ x: 0 }}
                 animate={{ x: "-50%" }}

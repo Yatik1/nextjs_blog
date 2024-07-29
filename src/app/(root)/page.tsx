@@ -26,7 +26,7 @@ const HomePage = () => {
     <div className="md:overflow-x-hidden ">
 
       <div className="flex items-center justify-center">
-        <h1 className="font-bold italic text-[3rem] pt-[1.2rem]">All Blogs{"->"}</h1>
+        <h1 className="font-bold italic text-[3rem] pt-[1.2rem]">All Blogs {`->`}</h1>
       </div>
 
       <CardSection blogs = {blogs}/>

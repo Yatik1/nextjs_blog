@@ -42,14 +42,14 @@ const BlogPage : React.FC = () => {
         <p className='text-xl h-screen w-full flex items-center justify-center'>Loading ..... </p>
       ) : (
         data ? (
-          <div className="w-[90vw] mx-[10vw] mt-[7vw] py-[1.5rem] flex flex-col items-center justify-start bg-white border-b">
+          <div className="w-screen mx-[10vw] py-[1.5rem] flex flex-col items-center justify-start bg-white">
                   
-              <div className="flex flex-col justify-center items-center leading-[2.5rem] w-full p-3 border-b border-stone-200 mb-4">
-                <h1 className='text-[2.5rem] font-semibold tracking-tighter'>{data.title}</h1>
+              <div className="flex flex-col justify-center items-center leading-[2.5rem] w-full p-3 border-b border-stone-200 mb-4 gap-3">
+                <h1 className='md:text-[2.5rem] text-[1.4rem] font-semibold tracking-tighter leading-6 md:leading-none'>{data.title}</h1>
                 <p className="text-sm text-gray-500">{formatDate(data.createdAt)}</p>
               </div>
   
-              <div className="relative w-[55rem] h-[30rem] rounded-[2rem] overflow-hidden">
+              <div className="relative md:w-[55rem] md:h-[30rem] w-[23rem] h-[20rem] rounded-[2rem] overflow-hidden">
                 <Image 
                   src={data?.coverImg}
                   alt="image"
@@ -59,10 +59,9 @@ const BlogPage : React.FC = () => {
                 />
               </div>
   
-              <div className="w-full mt-[2.5rem] py-4 align-center px-[5rem]">
-                <p>{data.content}</p>
+              <div className="w-full mt-2 py-4 md:px-[5rem] px-2">
+                <p className='tracking-tight '>{data.content}</p>
               </div>
-              <hr className=' w-full' />
           </div>
         ) : (
           <p className='h-screen w-full flex items-center justify-center'> ❌ No such Blog exist. </p>

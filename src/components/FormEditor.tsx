@@ -7,8 +7,13 @@ import { Blogs } from "@/types/types";
 import Image from "next/image";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
-const FormEditor = () => {
+interface FormProps {
+  userId?:string
+}
+
+const FormEditor : React.FC<FormProps>= ({userId}) => {
 
   const [title, setTitle] = useState<string>("")
   const [content, setContent] = useState<string>("")
@@ -32,22 +37,25 @@ const FormEditor = () => {
   };
 
   async function handleSubmit() {
+
     const postBlog : Blogs = {
       title,
       content,
       coverImg,
+      authorId:userId
     }
 
     try {
       
-      const response = await axios.post("/api/write" , postBlog, {
+      const response = await axios.post("/api/blog/write" , postBlog, {
         headers: {
           "Content-Type":"application/json"
         }
       })
 
-      alert("Success")      
+      toast.success("Blog Posted")      
       router.push("/")
+      router.refresh()
 
     } catch (error) {
       console.log("[POST DATA ERROR]" , error)
@@ -55,7 +63,7 @@ const FormEditor = () => {
   }
 
   return (
-    <div className='flex flex-col items-start justify-center p-10 w-full gap-2'>
+    <div className='flex flex-col items-start justify-center px-10 w-full gap-2'>
       <label className='font-bold text-[1.5rem]'>Title</label>
       <input
         type="text"

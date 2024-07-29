@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose"
 
 export interface Blogs extends Document{
+    authorId?:string // may
     title:string
     content:string
     coverImg:string
@@ -8,6 +9,10 @@ export interface Blogs extends Document{
 }
 
 const BlogSchema : Schema<Blogs> = new Schema ({
+    authorId : {
+        type:String,
+        required: true
+    }, // may work 
     title:{
         type:String,
         required:true

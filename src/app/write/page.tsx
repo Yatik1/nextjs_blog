@@ -11,11 +11,10 @@ const Blog = () => {
   } 
 
   return (
-    <div className="flex items-center justify-center absolute w-screen h-full mt-[1.6rem]">
-        <div className="flex flex-col items-start justify-start w-11/12 p-7">
-            <h1 className="font-bold italic text-[4rem] ml-[28vw]">Write your blog</h1>
-            <hr className=' w-full' />
-            <FormEditor />
+    <div className="flex items-center justify-center overflow-x-hidden">
+        <div className="flex flex-col items-start justify-start md:w-11/12 md:p-7 p-[4rem] gap-10 md:gap-0">
+            <h1 className="font-bold text-[2rem] md:text-[4rem] w-screen flex items-center justify-center">Write your blog</h1>
+            <FormEditor userId={userId} />
         </div>
     </div>
   )

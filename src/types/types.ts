@@ -4,4 +4,5 @@ export interface Blogs {
     content:string,
     coverImg:string,
     createdAt?:string
+    authorId?:string
 }

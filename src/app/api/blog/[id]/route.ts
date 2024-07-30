@@ -1,4 +1,5 @@
 import BlogModel from "@/model/Blog"
+import { auth } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
 
 export async function GET( 
@@ -26,6 +27,12 @@ export async function PATCH(
     {params} : {params : {id : string}}
 ) {
     try {
+
+        const {userId} = auth()
+
+        if(!userId) {
+            return new NextResponse("UnAuthorized" , {status : 401})
+        }
         
         const body = await req.json()
         const {title , content , coverImg} = body
@@ -65,6 +72,12 @@ export async function DELETE (
 ) {
     
     try {
+
+        const {userId} = auth()
+
+        if(!userId) {
+            return new NextResponse("UnAuthorized" , {status : 401})
+        }
         
         if(!params.id) {
             return new NextResponse("Invalid Id" , {status : 401})

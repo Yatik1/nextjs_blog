@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import { CldUploadWidget } from 'next-cloudinary';
@@ -8,19 +8,30 @@ import Image from "next/image";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
 interface FormProps {
   userId?:string
+  data?:Blogs
 }
 
-const FormEditor : React.FC<FormProps>= ({userId}) => {
+const FormEditor : React.FC<FormProps>= ({userId , data}) => {
 
-  const [title, setTitle] = useState<string>("")
-  const [content, setContent] = useState<string>("")
-  const [coverImg, setCoverImg] = useState<string>("")
+  const [title, setTitle] = useState<string>(data?.title || "")
+  const [content, setContent] = useState<string>(data?.content ||"")
+  const [coverImg, setCoverImg] = useState<string>(data?.coverImg ||"")
   const [disable, setDisable] = useState<boolean>(true)
 
   const router = useRouter()
+
+  useEffect(() => {
+    if (data) {
+      setTitle(data.title);
+      setContent(data.content);
+      setCoverImg(data.coverImg);
+    }
+  }, [data]);
+
 
   useEffect(() => {
     if (title.length > 0 && content.length > 2 && coverImg) {
@@ -46,17 +57,24 @@ const FormEditor : React.FC<FormProps>= ({userId}) => {
     }
 
     try {
-      
-      const response = await axios.post("/api/blog/write" , postBlog, {
-        headers: {
-          "Content-Type":"application/json"
-        }
-      })
-
-      toast.success("Blog Posted")      
+      let response
+      if(data) {
+        response = await axios.patch(`/api/blog/${data._id}` , postBlog , {
+          headers : {
+            "Content-Type" : "application/json",
+          }
+        })
+        toast.success("Update Successfully")
+      } else {
+        response = await axios.post("/api/blog/write" , postBlog, {
+          headers: {
+            "Content-Type":"application/json"
+          }
+        })
+        toast.success("Blog Posted")
+      }     
       router.push("/")
       router.refresh()
-
     } catch (error) {
       console.log("[POST DATA ERROR]" , error)
     }
@@ -76,7 +94,7 @@ const FormEditor : React.FC<FormProps>= ({userId}) => {
       <label className='font-bold text-[1.5rem] mt-3'>Write your Story</label>
       <textarea
         placeholder='Write what you think..'
-        className='px-4 py-2 rounded-lg border border-stone-400 focus:outline-none w-3/4 overflow-hidden'
+        className='px-4 py-2 rounded-lg border border-stone-400 focus:outline-none md:w-3/4 h-[10rem]'
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)}
         value={content}
       />
@@ -115,7 +133,7 @@ const FormEditor : React.FC<FormProps>= ({userId}) => {
         className='bg-black mt-5 text-white text-md px-3 py-2 rounded-md w-[5rem] disabled:cursor-not-allowed disabled:bg-gray-500'
         onClick={handleSubmit}
         disabled={disable}
-      >Post</button>
+      >{data ? "Update" : "Post"}</button>
     </div>
   )
 }

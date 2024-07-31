@@ -5,9 +5,6 @@ import useBlog from "../hooks/useBlogModal"
 import { useEffect } from "react"
 import MobileCardSection from "@/components/MobileCardSection"
 
-
-export const revalidate = 0;
-
 const HomePage = () => {
 
   const {blogs , loading , fetchBlogs} = useBlog()

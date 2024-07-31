@@ -1,9 +1,8 @@
-
 import Card from './ui/Card'
 import { Blogs } from '@/types/types'
 import {motion} from "framer-motion"
 
-
+export const revalidate = 0;
 
 const CardSection = ({blogs} : {blogs : Blogs[]}) => {
 

@@ -90,7 +90,7 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id}) => {
         cardRef.current.addEventListener("mouseleave" , handleMouseLeave)
 
     }
-  } , [])
+  } , [isThird])
 
   return(
 

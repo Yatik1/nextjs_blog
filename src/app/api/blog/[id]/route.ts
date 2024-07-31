@@ -1,3 +1,4 @@
+import dbConnect from "@/lib/dbConnect"
 import BlogModel from "@/model/Blog"
 import { auth } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
@@ -7,6 +8,8 @@ export async function GET(
     {params} : {params : {id:string}}
 ) {
     try {
+
+        await dbConnect()
         
         if(!params.id) {
             return new NextResponse("Valid Blog Id is Required " , {status : 400})
@@ -27,6 +30,8 @@ export async function PATCH(
     {params} : {params : {id : string}}
 ) {
     try {
+
+        await dbConnect()
 
         const {userId} = auth()
 

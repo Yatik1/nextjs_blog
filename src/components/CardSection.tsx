@@ -18,6 +18,7 @@ const CardSection = ({blogs} : {blogs : Blogs[]}) => {
             >
                 {blogs.map((data,index) => (
                     <Card 
+                        key={index}
                         id={data._id}
                         title={data.title}
                         cover={data.coverImg}
@@ -26,6 +27,7 @@ const CardSection = ({blogs} : {blogs : Blogs[]}) => {
                 ))}
                 {blogs.map((data,index) => (
                     <Card 
+                        key={index}
                         id={data._id}
                         title={data.title}
                         cover={data.coverImg}
@@ -37,6 +39,7 @@ const CardSection = ({blogs} : {blogs : Blogs[]}) => {
                 <div className='gap-[1.3rem] items-start hidden md:flex'>
                 {blogs.map((data,index) => (
                     <Card 
+                        key={index}
                         id={data._id}
                         title={data.title}
                         cover={data.coverImg}

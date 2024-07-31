@@ -11,6 +11,7 @@ const MobileCardSection = ({blogs} : {blogs : Blogs[]}) => {
         {blogs.map((data,index) => (
             <Link href={`/blog/${data._id}`}>
               <Card
+              key={index}
               id={data._id}
               title={data.title}
               cover={data.coverImg}

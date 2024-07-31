@@ -1,4 +1,4 @@
-import FormEditor from "@/components/FormEditor"
+import FormEditor from "@/components/ui/FormEditor"
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 

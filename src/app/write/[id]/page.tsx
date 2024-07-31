@@ -1,6 +1,6 @@
 "use client"
 
-import FormEditor from '@/components/FormEditor'
+import FormEditor from '@/components/ui/FormEditor'
 import { Blogs } from '@/types/types'
 import { useAuth } from '@clerk/nextjs'
 import axios from 'axios'

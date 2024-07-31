@@ -83,7 +83,7 @@ const BlogPage : React.FC = () => {
                     <div className="flex justify-center items-center gap-2">
                     
                     
-                      <button onClick={() => router.push('/write')} className='flex items-center justify-center gap-1 py-1 px-2 bg-black hover:bg-gray-600 rounded-md text-white cursor-pointer text-[0.9rem] md:text-sm'>
+                      <button onClick={() => router.push(`/write/${data._id}`)} className='flex items-center justify-center gap-1 py-1 px-2 bg-black hover:bg-gray-600 rounded-md text-white cursor-pointer text-[0.9rem] md:text-sm'>
                         <span className='hidden md:block'>Edit</span> <Edit className='md:w-4 md:h-4 w-[1.35rem] h-[1.35rem]' />
                       </button>
 

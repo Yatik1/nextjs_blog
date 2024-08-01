@@ -12,15 +12,12 @@ import gsap from "gsap"
 interface CardProps {
     id?:string
     title:string
-    author?:string
     cover:string
     index:number
     key:number
 }
 
-const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
-
-  const [isMounted , setIsMounted] = useState(false)
+const  Card : React.FC<CardProps>= ({title,cover,index , id ,key}) => {
 
   const linkRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
@@ -31,10 +28,6 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
   function handleClick() {
     router.push(`/blog/${id}`)
   }
-
-  useEffect(() => {
-    setIsMounted(true)
-  } , []) 
   
   useGSAP(() => {
     if(linkRef.current) {
@@ -97,7 +90,6 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
 
   } , [isThird])
 
-  if(!isMounted) return null;
 
   return (
 

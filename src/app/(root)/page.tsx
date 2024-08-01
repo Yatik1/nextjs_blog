@@ -27,9 +27,6 @@ const HomePage = () => {
     <p className='mt-[10rem] flex justify-center items-start text-slate-500'>No Blogs Available. ❌</p>
   }
 
-  console.log(blogs)
-
-
   return (
     <div className="md:overflow-x-hidden ">
 

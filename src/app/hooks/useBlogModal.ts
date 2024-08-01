@@ -22,6 +22,8 @@ const useBlog = create<BlogsState>((set) => ({
                 },
             })
             set({blogs : response.data})
+            console.log( "Response data : " , response.data)
+
         } catch (error) {
             console.log("Fetch error : ",error)
         } finally {

@@ -2,6 +2,7 @@ import { Blogs } from '@/types/types'
 import axios from 'axios'
 import {create} from 'zustand'
 
+export const revalidate = 0;
 
 interface BlogsState {
     blogs : Blogs[]

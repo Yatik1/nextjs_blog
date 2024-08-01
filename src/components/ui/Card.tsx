@@ -3,12 +3,11 @@
 import Image from "next/image"
 import Avatar from "./Avatar"
 import { ArrowUpRight } from "lucide-react"
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useGSAP } from '@gsap/react';
 import gsap from "gsap"
 
-export const revalidate = 0;
 
 interface CardProps {
     id?:string
@@ -21,6 +20,7 @@ interface CardProps {
 
 const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
 
+  const [isMounted , setIsMounted] = useState(false)
 
   const linkRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
@@ -31,6 +31,10 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
   function handleClick() {
     router.push(`/blog/${id}`)
   }
+
+  useEffect(() => {
+    setIsMounted(true)
+  } , []) 
   
   useGSAP(() => {
     if(linkRef.current) {
@@ -92,6 +96,8 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
     }
 
   } , [isThird])
+
+  if(!isMounted) return null;
 
   return (
 

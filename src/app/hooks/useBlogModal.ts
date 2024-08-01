@@ -15,9 +15,12 @@ const useBlog = create<BlogsState>((set) => ({
     loading : false,
     fetchBlogs : async () => {
         set({loading : true})
-        const timestamp = new Date().getTime()
         try {
-            const response = await axios.get<Blogs[]>(`/api?cache_bust=${timestamp}`)
+            const response = await axios.get<Blogs[]>(`/api/` , {
+                headers : {
+                    "Cache-Control" : 'no-store' ,
+                },
+            })
             set({blogs : response.data})
         } catch (error) {
             console.log("Fetch error : ",error)

@@ -19,6 +19,7 @@ const useBlog = create<BlogsState>((set) => ({
             const response = await axios.get<Blogs[]>(`/api/` , {
                 headers : {
                     "Cache-Control" : 'no-store' ,
+                    "X-Vercel-Cache" : "no-store",
                 },
             })
             set({blogs : response.data})

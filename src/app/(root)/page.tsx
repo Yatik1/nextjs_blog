@@ -2,23 +2,21 @@
 
 import CardSection from "@/components/CardSection"
 import useBlog from "../hooks/useBlogModal"
-import { useEffect, useState} from "react"
+import { useEffect} from "react"
 import MobileCardSection from "@/components/MobileCardSection"
+import toast from "react-hot-toast"
 
 const HomePage = () => {
 
-  const [isMounted, setIsMounted] = useState(false)
   const {blogs , loading , fetchBlogs} = useBlog()
 
-  useEffect(() => {
-    setIsMounted(true)
-  } , [])
 
   useEffect(() => {
-    fetchBlogs()
+    fetchBlogs().catch(error => {
+      toast.error("Error Occurred !")
+      console.log(error)
+    }) 
   } , [fetchBlogs])
-
-  if(!isMounted) return null;
 
 
   if (loading) {

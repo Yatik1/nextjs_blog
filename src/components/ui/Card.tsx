@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Avatar from "./Avatar"
 import { ArrowUpRight } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import { useRouter } from "next/navigation"
 import { useGSAP } from '@gsap/react';
 import gsap from "gsap"
@@ -29,7 +29,7 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
   function handleClick() {
     router.push(`/blog/${id}`)
   }
-
+  
   useGSAP(() => {
     if(linkRef.current) {
 
@@ -56,10 +56,7 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
       linkRef.current.addEventListener("mouseenter" , handleMouseEnter)
       linkRef.current.addEventListener("mouseleave" , handleMouseLeave)
     }
-  } , [])
 
-
-  useEffect(() => {
     if(cardRef.current) {
 
       const isMobile = window.innerWidth <= 768
@@ -91,10 +88,10 @@ const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
         cardRef.current.addEventListener("mouseleave" , handleMouseLeave)
 
     }
+
   } , [isThird])
 
-  return(
-
+  return (
 
     <div 
       className={`relative bg-stone-300 ${isThird ? 'w-[90vw] h-[80vw] md:w-[42vw] md:h-[30vw]' : 'w-[90vw] h-[80vw] md:w-[21vw] md:h-[30vw]'} rounded-[2rem] overflow-hidden md:mt-[2.4rem] mb-[2vw]`}

@@ -3,6 +3,8 @@ import React from 'react'
 import Card from './ui/Card'
 import Link from 'next/link'
 
+export const revalidate = 0;
+
 const MobileCardSection = ({blogs} : {blogs : Blogs[]}) => {
 
   return (

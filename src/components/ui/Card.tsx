@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation"
 import { useGSAP } from '@gsap/react';
 import gsap from "gsap"
 
+export const revalidate = 0;
+
 interface CardProps {
     id?:string
     title:string
@@ -17,8 +19,8 @@ interface CardProps {
     key:number
 }
 
-
 const  Card : React.FC<CardProps>= ({title,author,cover,index , id ,key}) => {
+
 
   const linkRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)

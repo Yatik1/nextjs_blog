@@ -1,3 +1,5 @@
+"use client";
+
 import { Blogs } from '@/types/types'
 import axios from 'axios'
 import {create} from 'zustand'

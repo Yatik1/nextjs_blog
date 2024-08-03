@@ -16,7 +16,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchBlogs()
-  } , [fetchBlogs])
+  } , [])
 
   if(!isMounted) return null;
 

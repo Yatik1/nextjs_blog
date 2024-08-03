@@ -8,15 +8,12 @@ import MobileCardSection from "@/components/MobileCardSection"
 const HomePage = () => {
 
   const [isMounted, setIsMounted] = useState(false)
-  const {blogs , loading , fetchBlogs} = useBlog()
+  const {blogs , loading , error} = useBlog()
 
   useEffect(() => {
     setIsMounted(true)
   } , [])
 
-  useEffect(() => {
-    fetchBlogs()
-  } , [])
 
   if(!isMounted) return null;
 

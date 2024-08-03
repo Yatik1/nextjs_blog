@@ -1,35 +1,17 @@
-import { Blogs } from '@/types/types'
-import {create} from 'zustand'
+import useSWR from 'swr';
 
-export const revalidate = 0;
+const fetcher = (url : string) => fetch(url).then((res) => res.json());
 
-interface BlogsState {
-    blogs : Blogs[]
-    loading:boolean
-    fetchBlogs: () => Promise<void> 
-}
+const useBlog = () => {
+  const { data: blogs, error } = useSWR('/api/', fetcher, { revalidateOnFocus: false });
 
-const useBlog = create<BlogsState>((set) => ({
-    blogs:[],
-    loading : false,
-    fetchBlogs : async () => {
-        set({loading : true})
-        
-        try {
-            const response = await fetch(`/api/`, {
-                cache : 'no-store',
-            });
+  const loading = !error && !blogs;
 
-            const data : Blogs[] = await response.json()
+  return {
+    blogs: blogs || [],
+    loading,
+    error,
+  };
+};
 
-            set({blogs : data})
-            console.log( "Response data : " , data)
-
-        } catch (error) {
-            console.log("Fetch error : ",error)
-        } finally {
-            set({loading : false})
-        }
-    }
-}))
-export default useBlog
+export default useBlog;

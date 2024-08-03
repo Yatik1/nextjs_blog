@@ -8,7 +8,10 @@ export async function GET (req:Request) {
         await dbConnect()
         
         const blogs = await BlogModel.find()
-        return NextResponse.json(blogs)
+        const response =  NextResponse.json(blogs)
+
+        response.headers.set('Cache-Control' , 'no-store')
+        return response
 
     } catch (error) {
         console.log("[GET ALL ERROR]" , error);

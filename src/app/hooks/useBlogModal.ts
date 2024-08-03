@@ -1,7 +1,4 @@
-"use client";
-
 import { Blogs } from '@/types/types'
-import axios from 'axios'
 import {create} from 'zustand'
 
 export const revalidate = 0;
@@ -9,7 +6,7 @@ export const revalidate = 0;
 interface BlogsState {
     blogs : Blogs[]
     loading:boolean
-    fetchBlogs: () => Promise<void>
+    fetchBlogs: () => Promise<void> 
 }
 
 const useBlog = create<BlogsState>((set) => ({
@@ -17,17 +14,16 @@ const useBlog = create<BlogsState>((set) => ({
     loading : false,
     fetchBlogs : async () => {
         set({loading : true})
+        
         try {
-            const response = await axios.get<Blogs[]>(`/api/?timestamp=${Date.now()}`, {
-                headers: {
-                    'Cache-Control': 'no-store',
-                    'X-Vercel-Cache': 'no-store',
-                    'Pragma': 'no-cache',
-                    'Expires': '0',
-                },
+            const response = await fetch(`/api/`, {
+                cache : 'no-store',
             });
-            set({blogs : response.data})
-            console.log( "Response data : " , response.data)
+
+            const data : Blogs[] = await response.json()
+
+            set({blogs : data})
+            console.log( "Response data : " , data)
 
         } catch (error) {
             console.log("Fetch error : ",error)

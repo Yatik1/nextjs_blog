@@ -16,12 +16,14 @@ const useBlog = create<BlogsState>((set) => ({
     fetchBlogs : async () => {
         set({loading : true})
         try {
-            const response = await axios.get<Blogs[]>(`/api/` , {
-                headers : {
-                    "Cache-Control" : 'no-store' ,
-                    "X-Vercel-Cache" : "no-store",
+            const response = await axios.get<Blogs[]>(`/api/?timestamp=${Date.now()}`, {
+                headers: {
+                    'Cache-Control': 'no-store',
+                    'X-Vercel-Cache': 'no-store',
+                    'Pragma': 'no-cache',
+                    'Expires': '0',
                 },
-            })
+            });
             set({blogs : response.data})
             console.log( "Response data : " , response.data)
 

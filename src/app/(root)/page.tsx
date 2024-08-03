@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import CardSection from "@/components/CardSection"
 import useBlog from "../hooks/useBlogModal"
@@ -22,7 +22,7 @@ const HomePage = () => {
     return <p className="flex w-full h-screen items-center justify-center">Loading ..... </p>
   }
 
-  if(blogs.length === 0) {
+  if(!loading && blogs.length === 0) {
     <p className='mt-[10rem] flex justify-center items-start text-slate-500'>No Blogs Available. ❌</p>
   }
 

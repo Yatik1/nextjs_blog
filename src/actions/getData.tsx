@@ -1,8 +1,5 @@
-import { Blogs } from "@/types/types";
-
-
 const getData = async () => {
-    const res = await fetch("http://localhost:3000/api/blog")
+    const res = await fetch("https://blogbud.vercel.app/api/blog")
     return res.json()
 }
 

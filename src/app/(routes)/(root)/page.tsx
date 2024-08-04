@@ -10,7 +10,11 @@ const HomePage = () => {
 
   const [data , setData] = useState<Blogs[] | undefined>(undefined)
   const [loading , setLoading] = useState<boolean>(false)
+  const [isMounted , setIsMounted] = useState<boolean>(false)
 
+  useEffect(() => {
+    setIsMounted(true)
+  } , [])
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -34,6 +38,8 @@ const HomePage = () => {
 
     fetchBlog()
   } , [])
+
+  if(!isMounted) return null;
 
   if (loading) {
     return <p className="flex w-full h-screen items-center justify-center">Loading ..... </p>

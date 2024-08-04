@@ -48,7 +48,6 @@ const HomePage = () => {
 
       <div className="flex items-center justify-center">
         <h1 className="font-bold italic text-[3rem] pt-[1.2rem]">All Blogs {`->`}</h1>
-        {data?.[2].title}
       </div>
 
       <CardSection blogs = {data} />

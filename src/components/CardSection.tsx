@@ -1,3 +1,5 @@
+"use client";
+
 import Card from './ui/Card'
 import { Blogs } from '@/types/types'
 import {motion} from "framer-motion"

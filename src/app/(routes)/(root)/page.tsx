@@ -8,7 +8,6 @@ import axios from "axios";
 
 const HomePage = () => {
 
-
   const [data , setData] = useState<Blogs[] | undefined>(undefined)
   const [loading , setLoading] = useState<boolean>(false)
 

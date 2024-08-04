@@ -18,7 +18,11 @@ const HomePage = () => {
           
           setLoading(true)
 
-          const response = await axios.get<Blogs[]>(`/api/blog/`)
+          const response = await axios.get<Blogs[]>(`/api/blog/` , {
+            headers : {
+              'Cache-Control' : 'no-cache',
+            }
+          })
           setData(response.data)
 
         } catch (error) {
@@ -44,10 +48,11 @@ const HomePage = () => {
 
       <div className="flex items-center justify-center">
         <h1 className="font-bold italic text-[3rem] pt-[1.2rem]">All Blogs {`->`}</h1>
+        {data?.[2].title}
       </div>
 
-      <CardSection blogs = {data}/>
-      <MobileCardSection blogs={data}/>
+      <CardSection blogs = {data} />
+      <MobileCardSection blogs={data} />
 
     </div>
       

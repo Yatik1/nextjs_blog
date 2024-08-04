@@ -4,7 +4,6 @@ import CardSection from "@/components/CardSection"
 import { useEffect, useState} from "react"
 import MobileCardSection from "@/components/MobileCardSection"
 import { Blogs } from "@/types/types";
-import axios from "axios";
 
 const HomePage = () => {
 
@@ -22,12 +21,14 @@ const HomePage = () => {
           
           setLoading(true)
 
-          const response = await axios.get<Blogs[]>(`/api/blog/` , {
-            headers : {
-              'Cache-Control' : 'no-cache',
+          const response = await fetch(`/api/blog/` , {
+            next : {
+              revalidate : 0
             }
           })
-          setData(response.data)
+
+          const res:Blogs[] = await response.json()
+          setData(res)
 
         } catch (error) {
           console.log(error)

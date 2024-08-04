@@ -1,53 +1,28 @@
-"use client"
+"use client";
 
 import CardSection from "@/components/CardSection"
-import { useEffect, useState} from "react"
 import MobileCardSection from "@/components/MobileCardSection"
 import { Blogs } from "@/types/types";
+import axios from "axios";
+import useSWR from "swr";
+
+const fetcher = (url : string) => axios.get(url).then(res => res.data)
 
 const HomePage = () => {
 
-  const [data , setData] = useState<Blogs[] | undefined>(undefined)
-  const [loading , setLoading] = useState<boolean>(false)
-  const [isMounted , setIsMounted] = useState<boolean>(false)
+  const {data , error , isLoading } = useSWR<Blogs[]>('/api/blog' , fetcher, {refreshInterval : 10000}) 
 
-  useEffect(() => {
-    setIsMounted(true)
-  } , [])
-
-  useEffect(() => {
-    const fetchBlog = async () => {
-        try {
-          
-          setLoading(true)
-
-          const response = await fetch(`/api/blog/` , {
-            next : {
-              revalidate : 0
-            }
-          })
-
-          const res:Blogs[] = await response.json()
-          setData(res)
-
-        } catch (error) {
-          console.log(error)
-        } finally {
-          setLoading(false)
-        }
-    }
-
-    fetchBlog()
-  } , [])
-
-  if(!isMounted) return null;
-
-  if (loading) {
+  if (isLoading) {
     return <p className="flex w-full h-screen items-center justify-center">Loading ..... </p>
   }
 
-  if(!loading && data?.length === 0) {
-    <p className='mt-[10rem] flex justify-center items-start text-slate-500'>No Blogs Available. ❌</p>
+  if (error) {
+    console.error(error);
+    return <p className="flex w-full h-screen items-center justify-center">Failed to load</p>
+  }
+
+  if (!isLoading && data?.length === 0) {
+    return <p className='mt-[10rem] flex justify-center items-start text-slate-500'>No Blogs Available. ❌</p>
   }
 
   return (

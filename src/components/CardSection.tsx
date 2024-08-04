@@ -4,18 +4,20 @@ import {motion} from "framer-motion"
 
 export const revalidate = 0;
 
-const CardSection = ({blogs} : {blogs : Blogs[]}) => {
+const CardSection = ({blogs} : {blogs : Blogs[] | undefined}) => {
+
+    const length = blogs?.length
 
     return (
         <div className="flex items-start pl-7 pb-[3rem]">
-            {blogs.length > 3 ? (
+            {(length !== undefined && length > 3)  ? (
                 <motion.div 
                 initial={{ x: 0 }}
                 animate={{ x: "-50%" }}
                 transition={{ repeat: Infinity, ease: "linear", duration:30, delay:0.5 }}
                 className="gap-[1.5rem] items-start hidden md:flex"
             >
-                {blogs.map((data,index) => (
+                {blogs?.map((data,index) => (
                     <Card 
                         key={index}
                         id={data._id}
@@ -24,7 +26,7 @@ const CardSection = ({blogs} : {blogs : Blogs[]}) => {
                         index={index}
                     />  
                 ))}
-                {blogs.map((data,index) => (
+                {blogs?.map((data,index) => (
                     <Card 
                         key={index}
                         id={data._id}
@@ -36,7 +38,7 @@ const CardSection = ({blogs} : {blogs : Blogs[]}) => {
             </motion.div> 
             ) : (
                 <div className='gap-[1.3rem] items-start hidden md:flex'>
-                {blogs.map((data,index) => (
+                {blogs?.map((data,index) => (
                     <Card 
                         key={index}
                         id={data._id}

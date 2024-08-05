@@ -1,17 +1,27 @@
 import getData from "@/actions/getData";
 import CardSection from "@/components/CardSection"
 import MobileCardSection from "@/components/MobileCardSection"
+import useSWR from "swr";
 
 export const revalidate=0;
 
+const fetcher = (url : string) => getData()
+
 const HomePage = async () => {
+  
+  const { data, error } = useSWR("/api/blog", fetcher);
 
-  const data = await getData()
-
-  if (data?.length === 0) {
-    return <p className='mt-[10rem] flex justify-center items-start text-slate-500'>No Blogs Available. ❌</p>
+  if (error) {
+      return <p className="mt-[10rem] flex justify-center items-start text-slate-500">Failed to load blogs. ❌</p>;
   }
 
+  if (!data) {
+      return <p className="mt-[10rem] flex justify-center items-start text-slate-500">Loading...</p>;
+  }
+
+  if (data.length === 0) {
+      return <p className='mt-[10rem] flex justify-center items-start text-slate-500'>No Blogs Available. ❌</p>;
+  }
   return (
     <div className="md:overflow-x-hidden ">
 

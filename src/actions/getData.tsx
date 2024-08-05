@@ -1,6 +1,12 @@
-const getData = async () => {
-    const res = await fetch("https://blogbud.vercel.app/api/blog")
-    return res.json()
-}
+import { unstable_noStore as noStore } from "next/cache";
 
-export default getData
+const getData = async () => {
+    noStore();
+    const res = await fetch("/api/blog");
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+    return res.json();
+};
+
+export default getData;

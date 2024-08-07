@@ -67,7 +67,7 @@ const BlogPage : React.FC = () => {
   return (
     <div className='w-full flex items-center justify-center'>
       {loading ? (
-        <p className='text-xl h-screen w-full flex items-center justify-center'>Loading ..... </p>
+        <p className='text-xl h-screen w-full flex items-center justify-center text-slate-500'>Loading ..... </p>
       ) : (
         data ? (
           <div className="w-screen mx-[10vw] py-[1.5rem] flex flex-col items-center justify-start bg-white">

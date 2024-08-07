@@ -32,11 +32,11 @@ const HomePage = () => {
   } , [])
 
   if (loading) {
-      return <p className="mt-[10rem] flex justify-center items-start text-slate-500">Loading...</p>;
+      return <p className=" h-screen flex justify-center items-center text-slate-500">Loading...</p>;
   }
 
   if (data?.length === 0) {
-      return <p className='mt-[10rem] flex justify-center items-start text-slate-500'>No Blogs Available. ❌</p>;
+      return <p className='h-screen flex justify-center items-center text-slate-500'>No Blogs Available. ❌</p>;
   }
   return (
     <div className="md:overflow-x-hidden ">

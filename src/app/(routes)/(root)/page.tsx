@@ -1,25 +1,41 @@
-import getData from "@/actions/getData";
+"use client"
+
 import CardSection from "@/components/CardSection"
 import MobileCardSection from "@/components/MobileCardSection"
-import useSWR from "swr";
+import { Blogs } from "@/types/types";
+import axios from "axios";
+import next from "next";
+import { useEffect, useState } from "react";
 
-export const revalidate=0;
-
-const fetcher = (url : string) => getData()
-
-const HomePage = async () => {
+const HomePage = () => {
   
-  const { data, error } = useSWR("/api/blog", fetcher);
+  const [data , setData] = useState<Blogs[] | undefined>(undefined)
+  const [loading , setLoading] = useState<boolean>(false)
 
-  if (error) {
-      return <p className="mt-[10rem] flex justify-center items-start text-slate-500">Failed to load blogs. ❌</p>;
-  }
+  useEffect(() => {
+    const fetchBlog = async () => {
 
-  if (!data) {
+        try {    
+          setLoading(true)
+
+          const response = await axios.post<Blogs[]>(`/api/blog/`)
+          setData(response.data)
+
+        } catch (error) {
+          console.log(error)
+        } finally {
+          setLoading(false)
+        }
+    }
+
+    fetchBlog()
+  } , [])
+
+  if (loading) {
       return <p className="mt-[10rem] flex justify-center items-start text-slate-500">Loading...</p>;
   }
 
-  if (data.length === 0) {
+  if (data?.length === 0) {
       return <p className='mt-[10rem] flex justify-center items-start text-slate-500'>No Blogs Available. ❌</p>;
   }
   return (

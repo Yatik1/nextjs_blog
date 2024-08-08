@@ -4,7 +4,6 @@ import CardSection from "@/components/CardSection"
 import MobileCardSection from "@/components/MobileCardSection"
 import { Blogs } from "@/types/types";
 import axios from "axios";
-import next from "next";
 import { useEffect, useState } from "react";
 
 const HomePage = () => {
@@ -42,7 +41,7 @@ const HomePage = () => {
     <div className="md:overflow-x-hidden ">
 
       <div className="flex items-center justify-center">
-        <h1 className="font-bold italic text-[3rem] pt-[1.2rem]">All Blogs {`->`}</h1>
+        <h1 className="font-bold text-[3rem] pt-[1.2rem]">All Blogs {`->`}</h1>
       </div>
 
       <CardSection blogs = {data} />
